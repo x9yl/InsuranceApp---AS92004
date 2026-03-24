@@ -11,8 +11,7 @@ namespace AS92004
     {
         //Declaring my Consant Variables, this includes the Monthly insurance rate and the device amount insurance rate.
         public static decimal InsuranceRate = 0.9m, MonthlyRate = 0.95m;
-        //Declaring my Global variables. This includes my Device category list
-        public static List<string> DEVICECATEGORY = new List<string> { "Laptop", "Desktop", "Other" };
+        
         //Insurance Summary global variables
         public static int TotalDevices = 0, TotalLaptops = 0, TotalDesktops = 0, TotalOther = 0;
         public static decimal TotalInsuranceValue = 0.0m, MostExpensive = 0, valueafterInsured = 0.0m;
@@ -29,7 +28,7 @@ namespace AS92004
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(" /$$$$$$                                                                                       /$$$$$$                     \r\n|_  $$_/                                                                                      /$$__  $$                    \r\n  | $$   /$$$$$$$   /$$$$$$$ /$$   /$$  /$$$$$$  /$$$$$$  /$$$$$$$   /$$$$$$$  /$$$$$$       | $$  \\ $$  /$$$$$$   /$$$$$$ \r\n  | $$  | $$__  $$ /$$_____/| $$  | $$ /$$__  $$|____  $$| $$__  $$ /$$_____/ /$$__  $$      | $$$$$$$$ /$$__  $$ /$$__  $$\r\n  | $$  | $$  \\ $$|  $$$$$$ | $$  | $$| $$  \\__/ /$$$$$$$| $$  \\ $$| $$      | $$$$$$$$      | $$__  $$| $$  \\ $$| $$  \\ $$\r\n  | $$  | $$  | $$ \\____  $$| $$  | $$| $$      /$$__  $$| $$  | $$| $$      | $$_____/      | $$  | $$| $$  | $$| $$  | $$\r\n /$$$$$$| $$  | $$ /$$$$$$$/|  $$$$$$/| $$     |  $$$$$$$| $$  | $$|  $$$$$$$|  $$$$$$$      | $$  | $$| $$$$$$$/| $$$$$$$/\r\n|______/|__/  |__/|_______/  \\______/ |__/      \\_______/|__/  |__/ \\_______/ \\_______/      |__/  |__/| $$____/ | $$____/ \r\n                                                                                                       | $$      | $$      \r\n                                                                                                       | $$      | $$      \r\n                                                                                                       |__/      |__/      ");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("!!This program is for educational use only!!");
+            Console.WriteLine("!!This program is for educational use only!!\n\n\n");
 
             //While loop to continue for as much as the user needs
             char continueInput = 'y';
@@ -52,8 +51,9 @@ namespace AS92004
         //for my OneDevice I am limiting it to only user input.
         public static string OneDevice()
         {
-            //Declaring Local variables for OneDevice, this includes all the variables that will be listed in the output, except deviceName
+            //Declaring Local variables
             List<string> QUESTIONS = new List<string> { "\n\nDevice name:", "\nAmount of Devices:", "\nPrice per Device:", "\nEnter Device Category: \n(1.Laptop\n(2.Desktop\n(3.Other(Phones, Consoles, etc)" };
+            List<string> DEVICECATEGORY = new List<string> { "Laptop", "Desktop", "Other" };
             string id = "";
             decimal price = 0;
             int deviceAmount = 0;
@@ -264,7 +264,7 @@ namespace AS92004
                 catch (Exception ex)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Error: You must 1, 2 or 3");
+                    Console.WriteLine($"Error: You must enter 1, 2 or 3");
                     Console.ResetColor();
                 }
 
