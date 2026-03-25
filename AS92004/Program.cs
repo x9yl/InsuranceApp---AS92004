@@ -43,10 +43,11 @@ namespace AS92004
             }
 
             //summary
-            Console.WriteLine("==============================Summary==============================\n\n");
+            Console.WriteLine("\n==============================Summary==============================\n");
             Console.WriteLine($"Total Devices: {TotalDevices}\nTotal Laptops: {TotalLaptops}\nTotal Desktops: {TotalDesktops}\nTotal Other: {TotalOther}\n");
-            Console.WriteLine($"Most Expensive Device: {deviceName} @ {CalculateMostExpensive(valueafterInsured).ToString("C")}\n");
-            Console.WriteLine($"Total Insured Price of all Devices: {TotalInsuranceValue}");
+            Console.WriteLine($"Most Expensive Device: {deviceName} @ {CalculateMostExpensive().ToString("C")}\n");
+            Console.WriteLine($"Total Insured Price of all Devices: {TotalInsuranceValue.ToString("C")}");
+            Console.WriteLine("\n==================================================================\n");
         }
         //for my OneDevice I am limiting it to only user input.
         public static string OneDevice()
@@ -114,7 +115,7 @@ namespace AS92004
 
         public static decimal CalculateValue(int deviceAmount, decimal price)
         {
-            decimal valueafterInsured = 0.0m;
+          
 
             if (deviceAmount > 5)
             {
@@ -126,11 +127,12 @@ namespace AS92004
             {
                 valueafterInsured = CalculateCost(deviceAmount, price);
 
+
             }
             //Running my most Expensive method every time a value is calculated.
-            CalculateMostExpensive(valueafterInsured);
-            //Also using calculate value to loop and add all the values altogether for the TotalInsuranceValue
-            TotalInsuranceValue += valueafterInsured;
+            CalculateMostExpensive();
+            
+            
 
             return valueafterInsured;
         }
@@ -155,19 +157,20 @@ namespace AS92004
             monthlyDepreciation += $"\nMonth 5:      {monthFive.ToString("C")}";
             monthlyDepreciation += $"\nMonth 6:      {monthSix.ToString("C")}";
 
-
+            //Putting this in my monthly method since if its ran through any other methods it runs twice and saves twice the value.
+            TotalInsuranceValue += valueafterInsured;
             return monthlyDepreciation;
         }
 
 
-        public static decimal CalculateMostExpensive(decimal valueafterInsured)
+        public static decimal CalculateMostExpensive()
         {
 
             if (valueafterInsured > MostExpensive)
             {
                 MostExpensive = valueafterInsured;
             }
-
+            
             return MostExpensive;
         }
         static string CheckName(string question)
@@ -238,7 +241,7 @@ namespace AS92004
 
         }
 
-        static int CheckCategory(string question)
+        static int CheckCategory(string question) //Category choice boundary and invalids
         {
             while (true)
             {
