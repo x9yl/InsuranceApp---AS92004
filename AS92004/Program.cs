@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Net.Http.Headers;
+using System.Reflection.Metadata;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 
@@ -62,7 +63,7 @@ namespace AS92004
             string onedeviceOutput = "";
             id = Guid.NewGuid().ToString().Substring(0, 8);
 
-            Console.WriteLine("==============================Add Device==========================");
+            Console.WriteLine("============================Add Device========================");
             Console.WriteLine();
             //Capture the Name
             deviceName = CheckName(QUESTIONS[0]);
@@ -106,6 +107,7 @@ namespace AS92004
         }
         public static decimal CalculateCost(int deviceAmount, decimal price)
         {
+            //multiplying the User input price by the user input amount of devices.
             decimal cost = 0;
             cost = deviceAmount * price;
 
@@ -115,7 +117,7 @@ namespace AS92004
 
         public static decimal CalculateValue(int deviceAmount, decimal price)
         {
-          
+          //Calculating value after insurance
 
             if (deviceAmount > 5)
             {
@@ -138,6 +140,7 @@ namespace AS92004
         }
         public static string CalculateMonthlyValue(int deviceAmount, decimal price)
         {
+            //Calculating monthly insurance and setting to a string
             decimal monthOne = 0, monthTwo = 0, monthThree = 0, monthFour = 0, monthFive = 0, monthSix = 0;
             string monthlyDepreciation = "";
 
@@ -165,6 +168,7 @@ namespace AS92004
 
         public static decimal CalculateMostExpensive()
         {
+            //Calculating most expensive devices.
 
             if (valueafterInsured > MostExpensive)
             {
@@ -180,7 +184,7 @@ namespace AS92004
                 // Ask for input
                 Console.WriteLine(question);
                 string nameInput = Console.ReadLine();
-                // Check if name input is alphabetic characters and numbers only.
+                // Check if name input is alphabetic characters, numbers and spaces only.
                 if (Regex.IsMatch(nameInput, @"^[A-Za-z0-9\s]+$"))
                 {
                     nameInput = nameInput[0].ToString().ToUpper() + nameInput.Substring(1);
@@ -203,10 +207,19 @@ namespace AS92004
             {
                 try
                 {
+
                     Console.WriteLine(question);
                     userInput = Convert.ToInt32(Console.ReadLine());
-
-
+                    if (userInput >= 1 && userInput <= 999) 
+                    { 
+                        return userInput;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("Please enter a number between 1 and 999");
+                        Console.ResetColor();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -214,13 +227,13 @@ namespace AS92004
                     Console.WriteLine($"Error: You must enter a number");
                     Console.ResetColor();
                 }
-                return userInput;
+               
             }
-
+            
         }
         static decimal CheckDecimal(string question) //Decimal variable crash handler.
         {
-            decimal decimalInput = 0;
+            decimal decimalInput = 0.0m;
             while (true)
             {
                 try
@@ -228,6 +241,18 @@ namespace AS92004
                     Console.WriteLine(question);
                     decimalInput = Convert.ToDecimal(Console.ReadLine());
 
+                    if (decimalInput >= 20 && decimalInput <= 10000) 
+                    {
+                        return decimalInput;
+                       
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine($"Please enter between 20 and 10000.");
+                        Console.ResetColor();
+                    }
+                   
 
                 }
                 catch (Exception ex)
@@ -236,10 +261,11 @@ namespace AS92004
                     Console.WriteLine($"Error: You must enter a number");
                     Console.ResetColor();
                 }
-                return decimalInput;
+                
             }
 
         }
+
 
         static int CheckCategory(string question) //Category choice boundary and invalids
         {
