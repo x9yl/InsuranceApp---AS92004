@@ -10,7 +10,7 @@ namespace AS92004
 {
     internal class Program
     {
-        //Declaring my Consant Variables, this includes the Monthly insurance rate and the device amount insurance rate.
+        //Declaring my Consant Variables, this includes the Monthly insurance rate and the normal insurance rate.
         public static decimal InsuranceRate = 0.9m, MonthlyRate = 0.95m;
         
         //Insurance Summary global variables
@@ -18,10 +18,6 @@ namespace AS92004
         public static decimal TotalInsuranceValue = 0.0m, MostExpensive = 0, valueafterInsured = 0.0m;
         //deviceName is global since ill be using it in my summary which is in my main method.
         public static string deviceName = "";
-
-
-
-
 
         static void Main(string[] args)
         {
@@ -63,8 +59,8 @@ namespace AS92004
             string onedeviceOutput = "";
             id = Guid.NewGuid().ToString().Substring(0, 8);
 
-            Console.WriteLine("============================Add Device========================");
-            Console.WriteLine();
+            Console.WriteLine("\n============================Add Device========================\n");
+          
             //Capture the Name
             deviceName = CheckName(QUESTIONS[0]);
             //Capture Amount of devices
@@ -165,7 +161,6 @@ namespace AS92004
             return monthlyDepreciation;
         }
 
-
         public static decimal CalculateMostExpensive()
         {
             //Calculating most expensive devices.
@@ -177,6 +172,7 @@ namespace AS92004
             
             return MostExpensive;
         }
+
         static string CheckName(string question)
         {
             while (true)
@@ -200,6 +196,7 @@ namespace AS92004
             }
 
         }
+
         static int CheckInt(string question) //Int variable crash handler.
         {
             int userInput = 0;
@@ -231,6 +228,7 @@ namespace AS92004
             }
             
         }
+
         static decimal CheckDecimal(string question) //Decimal variable crash handler.
         {
             decimal decimalInput = 0.0m;
@@ -241,7 +239,7 @@ namespace AS92004
                     Console.WriteLine(question);
                     decimalInput = Convert.ToDecimal(Console.ReadLine());
 
-                    if (decimalInput >= 20 && decimalInput <= 10000) 
+                    if (decimalInput >= 20 && decimalInput <= 50000) 
                     {
                         return decimalInput;
                        
@@ -249,7 +247,7 @@ namespace AS92004
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine($"Please enter between 20 and 10000.");
+                        Console.WriteLine($"Please enter between 20 and 50000.");
                         Console.ResetColor();
                     }
                    
@@ -265,7 +263,6 @@ namespace AS92004
             }
 
         }
-
 
         static int CheckCategory(string question) //Category choice boundary and invalids
         {
